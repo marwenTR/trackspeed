@@ -30,7 +30,7 @@ This project was built to demonstrate advanced frontend architecture, complex st
 - **🛣️ Monaco Circuit Branding:** Custom SVG logo modeled after the iconic Monaco Grand Prix track.
 - **⏱️ Live Countdown Timer:** Real-time timer calculating the exact days, hours, minutes, and seconds until the next Grand Prix (Mexico 2026).
 - **📊 Cinematic Dashboard:** A futuristic dashboard featuring glassmorphism cards, dynamic statistics, and performance charts.
-- **💹 Driver Stock Market:** A fully interactive virtual market where users can buy and sell driver stocks with live price simulations.
+- **$ Driver Stock Market:** A fully interactive virtual market where users can buy and sell driver stocks with live price simulations.
 - **📅 2026 Race Calendar:** A complete 24-race schedule with status indicators (Finished, Next, Upcoming) and detailed track telemetry pages.
 - **🏆 Global Leaderboard:** A sleek podium and ranking table for the top F1 traders.
 - **🎬 Smooth Animations:** Built with `framer-motion` for seamless page transitions, sliding navigation pills, and luxury hover effects.
