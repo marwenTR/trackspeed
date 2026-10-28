@@ -1,7 +1,7 @@
 'use client'
 
 import { Card } from '@/components/ui/card'
-import { Gauge, Map, TrendingUp, Activity } from 'lucide-react'
+import { Gauge, Map, TrendingUp, Activity, Clock } from 'lucide-react'
 
 interface TrackInfoProps {
   track: {
