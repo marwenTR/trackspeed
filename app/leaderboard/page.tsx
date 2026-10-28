@@ -6,12 +6,12 @@ import { Trophy, Medal, TrendingUp, User } from 'lucide-react'
 import { Navigation } from '@/components/layout/navigation'
 
 const topTraders = [
-  { rank: 1, name: "AlexV", value: "$245,678", change: "+23.4%", trades: 156 },
-  { rank: 2, name: "F1TraderPro", value: "$198,234", change: "+18.2%", trades: 142 },
-  { rank: 3, name: "RacingKing", value: "$187,456", change: "+15.7%", trades: 128 },
-  { rank: 4, name: "SpeedMaster", value: "$165,789", change: "+12.3%", trades: 115 },
-  { rank: 5, name: "PolePosition", value: "$154,321", change: "+11.8%", trades: 108 },
-  { rank: 6, name: "ApexHunter", value: "$142,000", change: "+9.5%", trades: 98 },
+  { rank: 1, name: "MARWEN", value: "$245,678", change: "+23.4%", trades: 156 },
+  { rank: 2, name: "CHARAF", value: "$198,234", change: "+18.2%", trades: 142 },
+  { rank: 3, name: "AHMED", value: "$187,456", change: "+15.7%", trades: 128 },
+  { rank: 4, name: "MOUHEB", value: "$165,789", change: "+12.3%", trades: 115 },
+  { rank: 5, name: "HEDI", value: "$154,321", change: "+11.8%", trades: 108 },
+  { rank: 6, name: "DHIA", value: "$142,000", change: "+9.5%", trades: 98 },
 ]
 
 export default function LeaderboardPage() {
