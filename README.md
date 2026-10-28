@@ -1,7 +1,7 @@
 <div align="center">
   
   <!-- You can replace this with a screenshot of your actual homepage later -->
-  <img src="https://images.unsplash.com/photo-1541343672885-9be56236302a?q=80&w=1200&auto=format&fit=crop" alt="TrackSpeed Banner" width="100%" style="border-radius: 12px; margin-bottom: 20px;" />
+  <img src="f1-bg" alt="TrackSpeed Banner" width="100%" style="border-radius: 12px; margin-bottom: 20px;" />
 
   # 🏎️ TRACKSPEED
   

@@ -1,9 +1,17 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
-    domains: ['images.unsplash.com', 'cdn.formula1.com'],
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'media.formula1.com',
+      },
+      {
+        protocol: 'https',
+        hostname: '**',
+      },
+    ],
   },
-  swcMinify: true,
 }
 
 module.exports = nextConfig

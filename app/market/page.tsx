@@ -9,8 +9,6 @@ import { PortfolioSummary } from '@/components/market/portfolio-summary'
 import { MarketChart } from '@/components/market/market-chart'
 import { useMarketStore } from '@/store/marketStore'
 import { drivers } from '@/data/drivers'
-
-// 1. IMPORT THE NAVIGATION
 import { Navigation } from '@/components/layout/navigation'
 
 export default function MarketPage() {
@@ -23,10 +21,9 @@ export default function MarketPage() {
   )
 
   return (
-    // 2. ADD THE RELATIVE AND OVERFLOW CLASSES
-    <div className="relative min-h-screen bg-[#0A0A0A] overflow-hidden">
+    // Changed bg-[#0A0A0A] to bg-alive
+    <div className="relative min-h-screen bg-alive overflow-hidden">
       
-      {/* 3. ADD THE NAVIGATION BAR HERE */}
       <Navigation />
 
       {/* Background Glow */}
@@ -34,7 +31,6 @@ export default function MarketPage() {
         <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-f1-red/10 rounded-full blur-[120px]" />
       </div>
 
-      {/* 4. ADD pt-32 TO PUSH CONTENT BELOW THE NAV BAR */}
       <div className="container mx-auto px-6 relative z-10 pt-32 pb-20">
         <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="mb-10">
           <h1 className="text-4xl font-bold text-white tracking-tight">

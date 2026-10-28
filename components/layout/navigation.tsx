@@ -4,7 +4,7 @@ import React, { useState, useEffect } from 'react'
 import Link from 'next/link'
 import { usePathname, useRouter } from 'next/navigation'
 import { motion } from 'framer-motion'
-import { Menu, X, Home, LayoutDashboard, TrendingUp, Trophy, BarChart3, LogOut, User } from 'lucide-react'
+import { Menu, X, Home, LayoutDashboard, TrendingUp, Trophy, BarChart3, LogOut, User, Users } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 
 const navItems = [
@@ -12,6 +12,7 @@ const navItems = [
   { name: 'Dashboard', href: '/dashboard', icon: LayoutDashboard },
   { name: 'Market', href: '/market', icon: TrendingUp },
   { name: 'Races', href: '/races', icon: Trophy },
+  { name: 'Drivers', href: '/drivers', icon: Users }, 
   { name: 'Leaderboard', href: '/leaderboard', icon: BarChart3 },
 ]
 
@@ -38,8 +39,7 @@ export function Navigation() {
     router.push('/')
   }
 
-  // Check if the current path matches a specific nav item 
-  // (e.g., /dashboard and /dashboard/settings both highlight Dashboard)
+  
   const isActive = (href: string) => {
     if (href === '/') return pathname === '/'
     return pathname.startsWith(href)

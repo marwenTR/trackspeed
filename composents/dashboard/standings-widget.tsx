@@ -1,14 +1,15 @@
 'use client'
 
 import React from 'react'
+import Link from 'next/link' // <-- Make sure this is here!
 import { Card } from '@/components/ui/card'
 
 const standings = [
-  { position: 1, driver: 'Kimi Antonelli', team: 'Mercedes', points: 365 },
-  { position: 2, driver: 'George Russell', team: 'Mercedes', points: 242 },
-  { position: 3, driver: 'Lewis Hamilton', team: 'Ferrari', points: 241 },
-  { position: 4, driver: 'Max Verstappen', team: 'Red Bull Racing', points: 236 },
-  { position: 5, driver: 'Charles Leclerc', team: 'Ferrari', points: 233 },
+  { position: 1, driver: 'Kimi Antonelli', id: 'kimi-antonelli', team: 'Mercedes', points: 365 },
+  { position: 2, driver: 'George Russell', id: 'george-russell', team: 'Mercedes', points: 242 },
+  { position: 3, driver: 'Lewis Hamilton', id: 'lewis-hamilton', team: 'Ferrari', points: 241 },
+  { position: 4, driver: 'Max Verstappen', id: 'max-verstappen', team: 'Red Bull Racing', points: 236 },
+  { position: 5, driver: 'Charles Leclerc', id: 'charles-leclerc', team: 'Ferrari', points: 233 },
 ]
 
 export function StandingsWidget() {
@@ -29,7 +30,12 @@ export function StandingsWidget() {
                 #{standing.position}
               </div>
               <div>
-                <p className="font-semibold text-gray-200 text-sm">{standing.driver}</p>
+                {/* The Link with the exact ID */}
+                <Link href={`/drivers/${standing.id}`}>
+                  <p className="font-semibold text-gray-200 text-sm hover:text-f1-red transition-colors cursor-pointer group-hover:underline decoration-f1-red/30 underline-offset-4">
+                    {standing.driver}
+                  </p>
+                </Link>
                 <p className="text-xs text-gray-500">{standing.team}</p>
               </div>
             </div>
