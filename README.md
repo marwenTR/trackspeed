@@ -60,4 +60,4 @@ To get a local copy up and running, follow these simple steps.
    ```bash
    git clone https://github.com/marwenTR/trackspeed.git
    
-**[🚀 View Live Demo] https://trackspeed-p7fy.vercel.app/
+**[🚀 View Live] https://trackspeed-p7fy.vercel.app/
