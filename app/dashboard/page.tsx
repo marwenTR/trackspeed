@@ -3,13 +3,20 @@
 import React, { useEffect, useState } from 'react'
 import { Navigation } from '@/components/layout/navigation'
 import { Footer } from '@/components/layout/footer'
-import { RefreshCw, TrendingUp, Users, Trophy, Activity, MapPin, Calendar } from 'lucide-react'
+import { RefreshCw, TrendingUp, Users, Trophy, Activity, MapPin, Calendar, DollarSign } from 'lucide-react'
+import { useMarketStore } from '@/store/marketStore'
 
 export default function DashboardPage() {
   const [username, setUsername] = useState('Racer')
   const [timeLeft, setTimeLeft] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0, isPast: false })
+  const [isMounted, setIsMounted] = useState(false) // ADDED THIS
+
+  const { balance, calculateTotalValue } = useMarketStore()
+  const totalValue = calculateTotalValue()
+  const profit = totalValue - 1000000
 
   useEffect(() => {
+    setIsMounted(true) // TELLS REACT TO RENDER SAFELY
     const storedUser = localStorage.getItem('pitwall_user')
     if (storedUser) {
       const user = JSON.parse(storedUser)
@@ -39,6 +46,14 @@ export default function DashboardPage() {
   const hours = new Date().getHours()
   const greeting = hours < 12 ? 'Good morning' : hours < 18 ? 'Good afternoon' : 'Good evening'
 
+  // DYNAMIC STATS
+  const stats = [
+    { icon: TrendingUp, label: 'Portfolio Value', value: isMounted ? `$${totalValue.toLocaleString()}` : '...', change: totalValue >= 1000000 ? '+ROI' : '-ROI', color: totalValue >= 1000000 ? 'text-green-400' : 'text-red-400' },
+    { icon: Users, label: 'Global Rank', value: '#1,234', change: '+42', color: 'text-green-400' },
+    { icon: Trophy, label: 'Win Rate', value: '67%', change: '+5%', color: 'text-green-400' },
+    { icon: DollarSign, label: 'Cash Balance', value: isMounted ? `$${balance.toLocaleString()}` : '...', change: 'AVAILABLE', color: 'text-gray-400' },
+  ]
+
   return (
     <div className="relative min-h-screen bg-alive overflow-hidden">
       <Navigation />
@@ -46,7 +61,6 @@ export default function DashboardPage() {
       <main className="pt-28 pb-20 relative z-10">
         <div className="container mx-auto px-6">
           
-          {/* Header */}
           <div className="mb-10 flex flex-wrap items-end justify-between gap-4">
             <div>
               <p className="text-gray-400 text-sm mb-1">{greeting}</p>
@@ -61,18 +75,12 @@ export default function DashboardPage() {
             </div>
           </div>
 
-          {/* Stats Row */}
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4 mb-8">
-            {[
-              { icon: TrendingUp, label: 'Portfolio Value', value: '$124,567', change: '+12.5%' },
-              { icon: Users, label: 'Global Rank', value: '#1,234', change: '+42' },
-              { icon: Trophy, label: 'Win Rate', value: '67%', change: '+5%' },
-              { icon: Activity, label: 'Trades', value: '47', change: '+12' },
-            ].map((stat, idx) => (
+            {stats.map((stat, idx) => (
               <div key={idx} className="glass-card bg-white/5 border border-white/10 p-5 rounded-2xl hover:border-f1-red/30 transition-colors">
                 <div className="flex items-center justify-between mb-4">
                   <div className="p-2 rounded-lg bg-white/5 border border-white/10"><stat.icon className="h-5 w-5 text-f1-red" /></div>
-                  <span className="text-xs text-green-400 font-medium bg-green-500/10 px-2 py-1 rounded-md">{stat.change}</span>
+                  <span className={`text-xs font-medium bg-black/40 px-2 py-1 rounded-md ${stat.color}`}>{stat.change}</span>
                 </div>
                 <div className="text-2xl font-bold text-white mb-1">{stat.value}</div>
                 <div className="text-sm text-gray-500">{stat.label}</div>
@@ -82,7 +90,6 @@ export default function DashboardPage() {
 
           <div className="grid gap-6 lg:grid-cols-3">
             
-            {/* Left Column */}
             <div className="space-y-6 lg:col-span-2">
               <div className="glass-card bg-white/5 border border-white/10 backdrop-blur-md p-6 rounded-2xl">
                 <div className="flex justify-between items-center mb-6">
@@ -124,10 +131,8 @@ export default function DashboardPage() {
               </div>
             </div>
 
-            {/* Right Column */}
             <div className="space-y-6">
               
-              {/* Next Race (Timer) */}
               <div className="glass-card bg-white/5 border border-white/10 backdrop-blur-md p-6 rounded-2xl relative overflow-hidden">
                 <div className="absolute top-0 right-0 w-32 h-32 bg-f1-red/20 rounded-full blur-[50px] pointer-events-none" />
                 <h3 className="text-lg font-semibold text-white mb-4 relative z-10">Next Race</h3>
@@ -151,19 +156,21 @@ export default function DashboardPage() {
                 </div>
               </div>
 
-              {/* Portfolio Widget */}
               <div className="glass-card bg-white/5 border border-white/10 backdrop-blur-md p-6 rounded-2xl">
                 <h3 className="text-lg font-semibold text-white mb-4">Your Portfolio</h3>
                 <div>
                   <p className="text-xs text-gray-500 mb-1">Total Value</p>
                   <div className="flex justify-between items-center mb-4">
-                    <p className="text-2xl font-bold text-white">$124,567</p>
-                    <span className="text-xs text-green-400 bg-green-500/10 px-2 py-1 rounded-md flex items-center gap-1"><TrendingUp className="h-3 w-3"/> +12.5%</span>
+                    <p className="text-2xl font-bold text-white">{isMounted ? `$${totalValue.toLocaleString()}` : '...'}</p>
+                    <span className={`text-xs font-medium px-2 py-1 rounded-md flex items-center gap-1 ${profit >= 0 ? 'text-green-400 bg-green-500/10' : 'text-red-400 bg-red-500/10'}`}>
+                      <TrendingUp className="h-3 w-3"/> 
+                      {profit >= 0 ? '+' : '-'}${Math.abs(profit).toLocaleString()}
+                    </span>
                   </div>
                   <div className="h-px bg-white/5 w-full mb-4" />
                   <div className="space-y-2 text-sm">
-                    <div className="flex justify-between"><span className="text-gray-500">Invested</span><span className="text-white font-mono">$100k</span></div>
-                    <div className="flex justify-between"><span className="text-gray-500">Profit</span><span className="text-green-400 font-mono">+$24.5k</span></div>
+                    <div className="flex justify-between"><span className="text-gray-500">Cash Balance</span><span className="text-white font-mono">{isMounted ? `$${balance.toLocaleString()}` : '...'}</span></div>
+                    <div className="flex justify-between"><span className="text-gray-500">Profit</span><span className={`font-mono ${profit >= 0 ? 'text-green-400' : 'text-red-400'}`}>{isMounted ? `${profit >= 0 ? '+' : '-'}$${Math.abs(profit).toLocaleString()}` : '...'}</span></div>
                   </div>
                 </div>
               </div>

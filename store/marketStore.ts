@@ -1,76 +1,82 @@
 import { create } from 'zustand'
+import { persist } from 'zustand/middleware'
 import { drivers } from '@/data/drivers'
 
 interface MarketState {
-  portfolio: { drivers: Record<string, { shares: number; avgPrice: number }>; totalValue: number }
   balance: number
+  portfolio: Record<string, number>
   buyStock: (driverId: string) => void
   sellStock: (driverId: string) => void
-  updatePrices: () => void
+  calculateTotalValue: () => number
+  resetAccount: () => void
 }
 
-export const useMarketStore = create<MarketState>((set, get) => ({
-  portfolio: { drivers: {}, totalValue: 0 },
-  balance: 100000,
-  
-  buyStock: (driverId: string) => {
-    const driver = drivers.find(d => d.id === driverId)
-    if (!driver) return
-    
-    set((state) => {
-      const currentShares = state.portfolio.drivers?.[driverId]?.shares || 0
-      const cost = driver.value
-      
-      if (state.balance < cost) return state
-      
-      const newDrivers = {
-        ...state.portfolio.drivers,
-        [driverId]: { shares: currentShares + 1, avgPrice: driver.value }
+export const useMarketStore = create<MarketState>()(
+  persist(
+    (set, get) => ({
+      balance: 1000000, // NEW STARTING BALANCE
+      portfolio: {},
+
+      buyStock: (driverId: string) => {
+        const driver = drivers.find(d => d.id === driverId)
+        if (!driver) return
+
+        const currentBalance = get().balance
+        const price = driver.value
+
+        if (currentBalance < price) {
+          alert("Insufficient funds! You don't have enough cash.")
+          return
+        }
+
+        set((state) => ({
+          balance: state.balance - price,
+          portfolio: {
+            ...state.portfolio,
+            [driverId]: (state.portfolio[driverId] || 0) + 1
+          }
+        }))
+      },
+
+      sellStock: (driverId: string) => {
+        const driver = drivers.find(d => d.id === driverId)
+        if (!driver) return
+
+        const currentShares = get().portfolio[driverId] || 0
+        if (currentShares === 0) {
+          alert("You don't own any shares of this driver!")
+          return
+        }
+
+        set((state) => ({
+          balance: state.balance + driver.value,
+          portfolio: {
+            ...state.portfolio,
+            [driverId]: state.portfolio[driverId] - 1
+          }
+        }))
+      },
+
+      calculateTotalValue: () => {
+        const { balance, portfolio } = get()
+        let portfolioValue = 0
+        
+        Object.keys(portfolio).forEach((driverId) => {
+          const driver = drivers.find(d => d.id === driverId)
+          if (driver) {
+            portfolioValue += driver.value * portfolio[driverId]
+          }
+        })
+
+        return balance + portfolioValue
+      },
+
+      resetAccount: () => {
+        set({ balance: 1000000, portfolio: {} })
       }
-      
-      const totalValue = Object.values(newDrivers).reduce((sum, d) => sum + (d.shares * driver.value), 0)
-      
-      return {
-        balance: state.balance - cost,
-        portfolio: { drivers: newDrivers, totalValue }
-      }
-    })
-  },
-  
-  sellStock: (driverId: string) => {
-    const driver = drivers.find(d => d.id === driverId)
-    if (!driver) return
-    
-    set((state) => {
-      const currentShares = state.portfolio.drivers?.[driverId]?.shares || 0
-      if (currentShares === 0) return state
-      
-      const newDrivers = { ...state.portfolio.drivers }
-      if (currentShares === 1) {
-        delete newDrivers[driverId]
-      } else {
-        newDrivers[driverId] = { shares: currentShares - 1, avgPrice: state.portfolio.drivers[driverId].avgPrice }
-      }
-      
-      const totalValue = Object.values(newDrivers).reduce((sum, d) => sum + (d.shares * driver.value), 0)
-      
-      return {
-        balance: state.balance + driver.value,
-        portfolio: { drivers: newDrivers, totalValue }
-      }
-    })
-  },
-  
-  updatePrices: () => {
-    // Simulate real-time price updates
-    set((state) => {
-      const newDrivers = { ...state.portfolio.drivers }
-      const totalValue = Object.values(newDrivers).reduce((sum, d) => {
-        const driver = drivers.find(drv => drv.id === Object.keys(newDrivers).find(id => newDrivers[id] === d))
-        return sum + (d.shares * (driver?.value || 0))
-      }, 0)
-      
-      return { portfolio: { ...state.portfolio, totalValue } }
-    })
-  }
-}))
+    }),
+    {
+      name: 'trackspeed-market-storage',
+    }
+  )
+)
