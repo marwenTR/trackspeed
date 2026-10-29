@@ -1,45 +1,45 @@
 export const driverProfiles: Record<string, any> = {
-  // 1st: Mercedes (Kimi & George)
-  'george-russell': { name: 'George Russell', number: 63, team: 'Mercedes', teamColor: '#27F4D2', country: 'UK', image: "/drivers/george-russell.png" },
-  'kimi-antonelli': { name: 'Kimi Antonelli', number: 12, team: 'Mercedes', teamColor: '#27F4D2', country: 'Italy', image: "/drivers/kimi-antonelli.png" },
+  // 1st: Mercedes
+  'kimi-antonelli': { name: 'Kimi Antonelli', number: 12, team: 'Mercedes', teamColor: '#27F4D2', country: 'Italy', age: 20, height: '1.72 m', weight: '68 kg', wins: 9, podiums: 15, poles: 7, fastestLaps: 7, championships: 0, seasonPoints: 365, seasonPos: '1st', gpEntered: 42, careerPoints: 515, dnfs: 1, image: "/drivers/kimi-antonelli.png", bio: 'Kimi Antonelli is a rising star in Formula 1, stepping into the dominant Mercedes seat in 2026. Known for his incredible raw pace and maturity beyond his years, he quickly asserted himself as a championship contender.' },
+  'george-russell': { name: 'George Russell', number: 63, team: 'Mercedes', teamColor: '#27F4D2', country: 'UK', age: 28, height: '1.85 m', weight: '70 kg', wins: 8, podiums: 18, poles: 5, fastestLaps: 7, championships: 0, seasonPoints: 242, seasonPos: '2nd', gpEntered: 120, careerPoints: 700, dnfs: 4, image: "/drivers/george-russell.png", bio: 'George Russell is a highly analytical driver who has consistently proven his speed at Mercedes. His smooth driving style and precise qualifying laps make him a formidable opponent.' },
   
-  // 2nd: Ferrari (Charles & Lewis)
-  'charles-leclerc': { name: 'Charles Leclerc', number: 16, team: 'Ferrari', teamColor: '#E8002D', country: 'Monaco', image: "/drivers/charles-leclerc.png" },
-  'lewis-hamilton': { name: 'Lewis Hamilton', number: 44, team: 'Ferrari', teamColor: '#E8002D', country: 'UK', image: "/drivers/lewis-hamilton.png" },
+  // 2nd: Ferrari
+  'charles-leclerc': { name: 'Charles Leclerc', number: 16, team: 'Ferrari', teamColor: '#E8002D', country: 'Monaco', age: 28, height: '1.80 m', weight: '69 kg', wins: 8, podiums: 35, poles: 25, fastestLaps: 10, championships: 0, seasonPoints: 241, seasonPos: '3rd', gpEntered: 150, careerPoints: 1200, dnfs: 12, image: "/drivers/charles-leclerc.png", bio: 'Charles Leclerc is the heart of Ferrari. With blistering one-lap pace and a fearless overtaking style, he is always a threat for victory.' },
+  'lewis-hamilton': { name: 'Lewis Hamilton', number: 44, team: 'Ferrari', teamColor: '#E8002D', country: 'UK', age: 41, height: '1.74 m', weight: '73 kg', wins: 105, podiums: 202, poles: 104, fastestLaps: 67, championships: 7, seasonPoints: 238, seasonPos: '4th', gpEntered: 350, careerPoints: 4800, dnfs: 31, image: "/drivers/lewis-hamilton.png", bio: 'Sir Lewis Hamilton is a living legend in Formula 1. Moving to Ferrari in 2025, he brings unparalleled experience, racecraft, and a tire management skill that is second to none.' },
+  
+  // 3rd: Red Bull
+  'max-verstappen': { name: 'Max Verstappen', number: 3, team: 'Red Bull Racing', teamColor: '#3671C6', country: 'Netherlands', age: 28, height: '1.81 m', weight: '72 kg', wins: 65, podiums: 115, poles: 45, fastestLaps: 35, championships: 4, seasonPoints: 236, seasonPos: '5th', gpEntered: 210, careerPoints: 3000, dnfs: 15, image: "/drivers/max-verstappen.png", bio: 'Max Verstappen is a generational talent. With four world championships to his name, his aggressive driving style and pure speed have redefined modern Formula 1.' },
+  'isack-hadjar': { name: 'Isack Hadjar', number: 6, team: 'Red Bull Racing', teamColor: '#3671C6', country: 'France', age: 22, height: '1.75 m', weight: '67 kg', wins: 0, podiums: 2, poles: 0, fastestLaps: 1, championships: 0, seasonPoints: 45, seasonPos: '12th', gpEntered: 25, careerPoints: 60, dnfs: 2, image: "/drivers/isack-hadjar.png", bio: 'Isack Hadjar is a promising young talent stepping up to the senior Red Bull team. He has shown impressive pace in the junior categories and is eager to prove himself alongside Max Verstappen.' },
+  
+  // 4th: McLaren
+  'lando-norris': { name: 'Lando Norris', number: 1, team: 'McLaren', teamColor: '#FF8000', country: 'UK', age: 27, height: '1.76 m', weight: '68 kg', wins: 15, podiums: 45, poles: 10, fastestLaps: 12, championships: 1, seasonPoints: 230, seasonPos: '6th', gpEntered: 130, careerPoints: 900, dnfs: 8, image: "/drivers/lando-norris.png", bio: 'Lando Norris is a fan favorite and a fierce competitor. After securing his first world championship, he continues to lead the McLaren charge with his exceptional race pace and consistency.' },
+  'oscar-piastri': { name: 'Oscar Piastri', number: 81, team: 'McLaren', teamColor: '#FF8000', country: 'Australia', age: 25, height: '1.78 m', weight: '68 kg', wins: 8, podiums: 22, poles: 3, fastestLaps: 5, championships: 0, seasonPoints: 200, seasonPos: '7th', gpEntered: 60, careerPoints: 350, dnfs: 4, image: "/drivers/oscar-piastri.png", bio: 'Oscar Piastri is a highly rated young driver who has quickly established himself as a future star. His calm demeanor and raw speed make him a perfect teammate to Lando Norris.' },
 
-  // 3rd: Red Bull Racing (Max & Isack)
-  'max-verstappen': { name: 'Max Verstappen', number: 3, team: 'Red Bull Racing', teamColor: '#3671C6', country: 'Netherlands', image: "/drivers/max-verstappen.png" },
-  'isack-hadjar': { name: 'Isack Hadjar', number: 6, team: 'Red Bull Racing', teamColor: '#3671C6', country: 'France', image: "/drivers/isack-hadjar.png" },
-  
-  // 4th: McLaren (Lando & Oscar)
-  'lando-norris': { name: 'Lando Norris', number: 1, team: 'McLaren', teamColor: '#FF8000', country: 'UK', image: "/drivers/lando-norris.png" },
-  'oscar-piastri': { name: 'Oscar Piastri', number: 81, team: 'McLaren', teamColor: '#FF8000', country: 'Australia', image: "/drivers/oscar-piastri.png" },
-  
-  // 5th: Racing Bulls (Liam & Arvid)
-  'liam-lawson': { name: 'Liam Lawson', number: 30, team: 'Racing Bulls', teamColor: '#6692FF', country: 'New Zealand', image: "/drivers/liam-lawson.png" },
-  'arvid-lindblad': { name: 'Arvid Lindblad', number: 41, team: 'Racing Bulls', teamColor: '#6692FF', country: 'UK', image: "/drivers/arvid-lindblad.png" },
+  // 5th: Racing Bulls
+  'liam-lawson': { name: 'Liam Lawson', number: 30, team: 'Racing Bulls', teamColor: '#6692FF', country: 'New Zealand', age: 24, height: '1.75 m', weight: '68 kg', wins: 0, podiums: 0, poles: 0, fastestLaps: 0, championships: 0, seasonPoints: 8, seasonPos: '19th', gpEntered: 30, careerPoints: 10, dnfs: 2, image: "/drivers/liam-lawson.png", bio: 'Liam Lawson is a tenacious racer known for his aggressive overtaking and never-give-up attitude. He is looking to establish himself as a regular points scorer in 2026.' },
+  'arvid-lindblad': { name: 'Arvid Lindblad', number: 41, team: 'Racing Bulls', teamColor: '#6692FF', country: 'UK', age: 19, height: '1.80 m', weight: '70 kg', wins: 0, podiums: 0, poles: 0, fastestLaps: 0, championships: 0, seasonPoints: 0, seasonPos: '22nd', gpEntered: 5, careerPoints: 0, dnfs: 1, image: "/drivers/arvid-lindblad.png", bio: 'Arvid Lindblad is a highly touted rookie making his F1 debut. Backed by Red Bull, he has dominated the junior formulas and is ready for the challenge of Formula 1.' },
 
-  // 6th: Alpine (Pierre & Franco)
-  'pierre-gasly': { name: 'Pierre Gasly', number: 10, team: 'Alpine', teamColor: '#FF87BC', country: 'France', image: "/drivers/pierre-gasly.png" },
-  'franco-colapinto': { name: 'Franco Colapinto', number: 43, team: 'Alpine', teamColor: '#FF87BC', country: 'Argentina', image: "/drivers/franco-colapinto.png" },
+  // 6th: Alpine
+  'pierre-gasly': { name: 'Pierre Gasly', number: 10, team: 'Alpine', teamColor: '#FF87BC', country: 'France', age: 30, height: '1.77 m', weight: '70 kg', wins: 1, podiums: 4, poles: 0, fastestLaps: 3, championships: 0, seasonPoints: 22, seasonPos: '16th', gpEntered: 140, careerPoints: 400, dnfs: 12, image: "/drivers/pierre-gasly.png", bio: 'Pierre Gasly is a race winner and a strong leader. He brings valuable experience to the Alpine team as they continue to rebuild and push towards the front of the midfield.' },
+  'franco-colapinto': { name: 'Franco Colapinto', number: 43, team: 'Alpine', teamColor: '#FF87BC', country: 'Argentina', age: 23, height: '1.75 m', weight: '69 kg', wins: 0, podiums: 0, poles: 0, fastestLaps: 0, championships: 0, seasonPoints: 5, seasonPos: '20th', gpEntered: 15, careerPoints: 5, dnfs: 3, image: "/drivers/franco-colapinto.png", bio: 'Franco Colapinto is an exciting prospect from Argentina. He impressed during his rookie season with his speed and fearless overtaking, earning him a full-time seat for 2026.' },
 
-  // 7th: Haas (Esteban & Oliver)
-  'esteban-ocon': { name: 'Esteban Ocon', number: 31, team: 'Haas', teamColor: '#B6BABD', country: 'France', image: "/drivers/esteban-ocon.png" },
-  'oliver-bearman': { name: 'Oliver Bearman', number: 87, team: 'Haas', teamColor: '#B6BABD', country: 'UK', image: "/drivers/oliver-bearman.png" },
-  
-  // 8th: Audi (Nico & Gabriel)
-  'nico-hulkenberg': { name: 'Nico Hulkenberg', number: 27, team: 'Audi', teamColor: '#52E252', country: 'Germany', image: "/drivers/nico-hulkenberg.png" },
-  'gabriel-bortoleto': { name: 'Gabriel Bortoleto', number: 5, team: 'Audi', teamColor: '#52E252', country: 'Brazil', image: "/drivers/gabriel-bortoleto.png" },
+  // 7th: Haas
+  'esteban-ocon': { name: 'Esteban Ocon', number: 31, team: 'Haas', teamColor: '#B6BABD', country: 'France', age: 30, height: '1.86 m', weight: '70 kg', wins: 1, podiums: 4, poles: 0, fastestLaps: 1, championships: 0, seasonPoints: 18, seasonPos: '17th', gpEntered: 150, careerPoints: 400, dnfs: 15, image: "/drivers/esteban-ocon.png", bio: 'Esteban Ocon is a fierce competitor who never backs down from a fight. His experience will be crucial as Haas looks to move up the grid.' },
+  'oliver-bearman': { name: 'Oliver Bearman', number: 87, team: 'Haas', teamColor: '#B6BABD', country: 'UK', age: 21, height: '1.82 m', weight: '72 kg', wins: 0, podiums: 1, poles: 0, fastestLaps: 1, championships: 0, seasonPoints: 30, seasonPos: '13th', gpEntered: 25, careerPoints: 40, dnfs: 3, image: "/drivers/oliver-bearman.png", bio: 'Oliver Bearman is a rising star who impressed everyone with his super-sub appearances. Now a full-time driver, he is ready to show his potential over a full season.' },
 
-  // 9th: Williams (Alex & Carlos)
-  'alex-albon': { name: 'Alex Albon', number: 23, team: 'Williams', teamColor: '#64C4FF', country: 'Thailand', image: "/drivers/alex-albon.png" },
-  'carlos-sainz': { name: 'Carlos Sainz', number: 55, team: 'Williams', teamColor: '#64C4FF', country: 'Spain', image: "/drivers/carlos-sainz.png" },
-  
-  // 10th: Aston Martin (Fernando & Lance)
-  'fernando-alonso': { name: 'Fernando Alonso', number: 14, team: 'Aston Martin', teamColor: '#229971', country: 'Spain', image: "/drivers/fernando-alonso.png" },
-  'lance-stroll': { name: 'Lance Stroll', number: 18, team: 'Aston Martin', teamColor: '#229971', country: 'Canada', image: "/drivers/lance-stroll.png" },
-  
-  // 11th: Cadillac (Sergio & Valtteri)
-  'sergio-perez': { name: 'Sergio Perez', number: 11, team: 'Cadillac', teamColor: '#FFD700', country: 'Mexico', image: "/drivers/sergio-perez.png" },
-  'valtteri-bottas': { name: 'Valtteri Bottas', number: 77, team: 'Cadillac', teamColor: '#FFD700', country: 'Finland', image: "/drivers/valtteri-bottas.png" },
+  // 8th: Audi
+  'nico-hulkenberg': { name: 'Nico Hulkenberg', number: 27, team: 'Audi', teamColor: '#52E252', country: 'Germany', age: 39, height: '1.84 m', weight: '73 kg', wins: 0, podiums: 1, poles: 1, fastestLaps: 2, championships: 0, seasonPoints: 15, seasonPos: '14th', gpEntered: 220, careerPoints: 550, dnfs: 25, image: "/drivers/nico-hulkenberg.png", bio: 'Nico Hulkenberg is a veteran of the sport, finally getting his first podium in 2025. He brings immense experience to the new Audi project.' },
+  'gabriel-bortoleto': { name: 'Gabriel Bortoleto', number: 5, team: 'Audi', teamColor: '#52E252', country: 'Brazil', age: 21, height: '1.80 m', weight: '70 kg', wins: 0, podiums: 0, poles: 0, fastestLaps: 0, championships: 0, seasonPoints: 2, seasonPos: '21st', gpEntered: 10, careerPoints: 2, dnfs: 2, image: "/drivers/gabriel-bortoleto.png", bio: 'Gabriel Bortoleto is a promising newcomer and a former F3 champion. He is looking to learn from Nico Hulkenberg and help build the Audi team.' },
+
+  // 9th: Williams
+  'alex-albon': { name: 'Alex Albon', number: 23, team: 'Williams', teamColor: '#64C4FF', country: 'Thailand', age: 30, height: '1.86 m', weight: '74 kg', wins: 0, podiums: 2, poles: 0, fastestLaps: 0, championships: 0, seasonPoints: 12, seasonPos: '18th', gpEntered: 100, careerPoints: 240, dnfs: 10, image: "/drivers/alex-albon.png", bio: 'Alex Albon is a highly consistent performer who has often dragged his Williams into positions it doesn\'t belong. He is a key part of the team\'s revival.' },
+  'carlos-sainz': { name: 'Carlos Sainz', number: 55, team: 'Williams', teamColor: '#64C4FF', country: 'Spain', age: 32, height: '1.78 m', weight: '72 kg', wins: 4, podiums: 25, poles: 6, fastestLaps: 4, championships: 0, seasonPoints: 110, seasonPos: '8th', gpEntered: 200, careerPoints: 1100, dnfs: 18, image: "/drivers/carlos-sainz.png", bio: 'Carlos Sainz is a proven race winner and a shrewd operator. His move to Williams signals a new era for the team as they aim to return to the top.' },
+
+  // 10th: Aston Martin
+  'fernando-alonso': { name: 'Fernando Alonso', number: 14, team: 'Aston Martin', teamColor: '#229971', country: 'Spain', age: 45, height: '1.74 m', weight: '68 kg', wins: 32, podiums: 106, poles: 22, fastestLaps: 26, championships: 2, seasonPoints: 58, seasonPos: '10th', gpEntered: 400, careerPoints: 2300, dnfs: 65, image: "/drivers/fernando-alonso.png", bio: 'Fernando Alonso is one of the greatest drivers in F1 history. Even in his 40s, he remains a fierce competitor and a master of race strategy.' },
+  'lance-stroll': { name: 'Lance Stroll', number: 18, team: 'Aston Martin', teamColor: '#229971', country: 'Canada', age: 28, height: '1.82 m', weight: '70 kg', wins: 0, podiums: 3, poles: 1, fastestLaps: 0, championships: 0, seasonPoints: 24, seasonPos: '15th', gpEntered: 160, careerPoints: 300, dnfs: 20, image: "/drivers/lance-stroll.png", bio: 'Lance Stroll has shown flashes of brilliance, particularly in wet conditions. He continues to develop as a driver under the guidance of Fernando Alonso.' },
+
+  // 11th: Cadillac
+  'sergio-perez': { name: 'Sergio Perez', number: 11, team: 'Cadillac', teamColor: '#FFD700', country: 'Mexico', age: 36, height: '1.73 m', weight: '63 kg', wins: 6, podiums: 39, poles: 3, fastestLaps: 12, championships: 0, seasonPoints: 40, seasonPos: '11th', gpEntered: 280, careerPoints: 1600, dnfs: 22, image: "/drivers/sergio-perez.png", bio: 'Sergio Perez is a fan favorite and a race winner. He brings immense experience and a huge following to the newly formed Cadillac team.' },
+  'valtteri-bottas': { name: 'Valtteri Bottas', number: 77, team: 'Cadillac', teamColor: '#FFD700', country: 'Finland', age: 37, height: '1.73 m', weight: '70 kg', wins: 10, podiums: 67, poles: 20, fastestLaps: 19, championships: 0, seasonPoints: 100, seasonPos: '9th', gpEntered: 240, careerPoints: 1800, dnfs: 20, image: "/drivers/valtteri-bottas.png", bio: 'Valtteri Bottas brings immense experience and pure speed to Cadillac. The Finnish driver is known for his qualifying pace and his no-nonsense approach.' }
 }
