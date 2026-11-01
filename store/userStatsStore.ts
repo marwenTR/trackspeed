@@ -32,7 +32,8 @@ export const useUserStatsStore = create<UserStatsState>()(
 
       setUsername: (name: string) => set({ username: name }),
 
-      recordTrade: (trade) => set((state: UserStatsState) => ({
+      // FIXED: Added explicit types to `state` so TypeScript doesn't infer 'trade' as 'any'
+      recordTrade: (trade: Omit<Trade, 'id' | 'timestamp'>) => set((state: UserStatsState) => ({
         totalTrades: (state.totalTrades || 0) + 1,
         profitableTrades: trade.action === 'SELL' 
           ? (state.profitableTrades || 0) + 1 
