@@ -13,7 +13,7 @@ const navItems = [
   { name: 'Market', href: '/market', icon: TrendingUp },
   { name: 'Races', href: '/races', icon: Trophy },
   { name: 'Drivers', href: '/drivers', icon: Users },
-  { name: 'Teams', href: '/teams', icon: Shield }, 
+  { name: 'Teams', href: '/teams', icon: Shield },
   { name: 'Leaderboard', href: '/leaderboard', icon: BarChart3 },
 ]
 
@@ -40,7 +40,6 @@ export function Navigation() {
     router.push('/')
   }
 
-  
   const isActive = (href: string) => {
     if (href === '/') return pathname === '/'
     return pathname.startsWith(href)
@@ -74,8 +73,8 @@ export function Navigation() {
               </span>
             </Link>
 
-            {/* Desktop Navigation with Smooth Sliding Pill */}
-            <div className="hidden md:flex items-center gap-1 bg-white/5 border border-white/10 rounded-full px-2 py-1.5 backdrop-blur-md">
+            {/* Desktop Navigation */}
+            <div className="hidden lg:flex items-center gap-1 bg-white/5 border border-white/10 rounded-full px-2 py-1.5 backdrop-blur-md">
               {navItems.map((item) => {
                 const active = isActive(item.href)
                 return (
@@ -89,7 +88,6 @@ export function Navigation() {
                       <item.icon className={`h-4 w-4 transition-colors ${active ? 'text-f1-red' : ''}`} />
                       <span className="relative z-10">{item.name}</span>
                       
-                      {/* The Smooth Sliding Pill */}
                       {active && (
                         <motion.div
                           layoutId="activeTabPill"
@@ -103,7 +101,7 @@ export function Navigation() {
               })}
             </div>
 
-            {/* Auth / Profile Section */}
+            {/* Auth Section */}
             <div className="hidden md:flex items-center gap-4">
               {user ? (
                 <div className="relative">
@@ -117,7 +115,6 @@ export function Navigation() {
                     <span className="text-sm font-medium text-white">{user.name}</span>
                   </button>
                   
-                  {/* Dropdown */}
                   {isDropdownOpen && (
                     <>
                       <div className="fixed inset-0 z-40" onClick={() => setIsDropdownOpen(false)} />
@@ -126,6 +123,12 @@ export function Navigation() {
                         animate={{ opacity: 1, y: 0, scale: 1 }}
                         className="absolute right-0 mt-2 w-48 rounded-xl bg-[#111] border border-white/10 shadow-2xl overflow-hidden z-50"
                       >
+                        <Link href="/profile" onClick={() => setIsDropdownOpen(false)}>
+                          <button className="w-full flex items-center gap-3 px-4 py-3 text-sm text-white hover:bg-white/10 transition-colors border-b border-white/10">
+                            <User className="h-4 w-4" />
+                            My Profile
+                          </button>
+                        </Link>
                         <button
                           onClick={handleSignOut}
                           className="w-full flex items-center gap-3 px-4 py-3 text-sm text-red-400 hover:bg-red-500/10 transition-colors"
@@ -152,7 +155,7 @@ export function Navigation() {
             {/* Mobile Menu Button */}
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="md:hidden p-2 rounded-lg bg-white/5 border border-white/10"
+              className="lg:hidden p-2 rounded-lg bg-white/5 border border-white/10"
             >
               {isMobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
             </button>
@@ -166,9 +169,9 @@ export function Navigation() {
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: -20 }}
-          className="fixed inset-0 z-40 bg-black/95 backdrop-blur-xl md:hidden pt-24"
+          className="fixed inset-0 z-40 bg-black/95 backdrop-blur-xl lg:hidden pt-24"
         >
-          <div className="flex flex-col p-6 space-y-2">
+          <div className="flex flex-col p-6 space-y-2 overflow-y-auto max-h-screen">
             {navItems.map((item) => {
               const active = isActive(item.href)
               return (
@@ -189,16 +192,26 @@ export function Navigation() {
             })}
             
             {user ? (
-              <button
-                onClick={() => {
-                  handleSignOut()
-                  setIsMobileMenuOpen(false)
-                }}
-                className="flex items-center gap-3 px-4 py-3 rounded-xl text-lg font-medium text-red-400 hover:bg-red-500/10 mt-4"
-              >
-                <LogOut className="h-5 w-5" />
-                Sign Out
-              </button>
+              <>
+                <Link
+                  href="/profile"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  className="flex items-center gap-3 px-4 py-3 rounded-xl text-lg font-medium text-white hover:bg-white/5 mt-4 border-t border-white/10 pt-4"
+                >
+                  <User className="h-5 w-5" />
+                  My Profile
+                </Link>
+                <button
+                  onClick={() => {
+                    handleSignOut()
+                    setIsMobileMenuOpen(false)
+                  }}
+                  className="flex items-center gap-3 px-4 py-3 rounded-xl text-lg font-medium text-red-400 hover:bg-red-500/10"
+                >
+                  <LogOut className="h-5 w-5" />
+                  Sign Out
+                </button>
+              </>
             ) : (
               <div className="mt-6">
                 <Button asChild className="w-full bg-f1-red h-12 text-lg rounded-xl">

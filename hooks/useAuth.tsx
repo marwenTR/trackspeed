@@ -1,6 +1,8 @@
 'use client'
 
-import { createContext, useContext, useEffect, useState } from 'react'
+import React, { createContext, useContext, useEffect, useState } from 'react'
+import { useRouter } from 'next/navigation'
+import { useUserStatsStore } from '@/store/userStatsStore'
 
 interface User {
   id: string
@@ -22,11 +24,15 @@ const AuthContext = createContext<AuthContextType | undefined>(undefined)
 export function AuthProvider({ children }: { children: React.ReactNode }) {
   const [user, setUser] = useState<User | null>(null)
   const [loading, setLoading] = useState(true)
+  const router = useRouter()
 
   useEffect(() => {
     const storedUser = localStorage.getItem('pitwall_user')
     if (storedUser) {
-      setUser(JSON.parse(storedUser))
+      const parsedUser = JSON.parse(storedUser)
+      setUser(parsedUser)
+      // Sync username to the stats store for leaderboard
+      useUserStatsStore.getState().setUsername(parsedUser.name || parsedUser.email.split('@')[0])
     }
     setLoading(false)
   }, [])
@@ -34,16 +40,22 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   const signIn = async (email: string, password: string) => {
     return new Promise<void>((resolve, reject) => {
       setTimeout(() => {
-        if (email && password.length >= 3) {
-          const newUser = { id: 'user_1', email, name: email.split('@')[0] }
-          localStorage.setItem('pitwall_user', JSON.stringify(newUser))
-          setUser(newUser)
+        if (email && email.includes('@') && password && password.length >= 3) {
+          const userData: User = {
+            id: 'user_' + Date.now(),
+            email: email,
+            name: email.split('@')[0]
+          }
+          localStorage.setItem('pitwall_user', JSON.stringify(userData))
+          setUser(userData)
           
-          // FORCE HARD RELOAD TO DASHBOARD
+          // Sync username to the stats store for leaderboard
+          useUserStatsStore.getState().setUsername(userData.name)
+          
           window.location.href = '/dashboard'
           resolve()
         } else {
-          reject(new Error('Password must be at least 3 characters'))
+          reject(new Error('Please enter a valid email and password (min 3 characters)'))
         }
       }, 500)
     })
@@ -54,11 +66,17 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   const signInWithGoogle = async () => {
     return new Promise<void>((resolve) => {
       setTimeout(() => {
-        const newUser = { id: 'google_1', email: 'demo@gmail.com', name: 'Google User' }
-        localStorage.setItem('pitwall_user', JSON.stringify(newUser))
-        setUser(newUser)
+        const userData: User = {
+          id: 'google_' + Date.now(),
+          email: 'user@gmail.com',
+          name: 'Google User'
+        }
+        localStorage.setItem('pitwall_user', JSON.stringify(userData))
+        setUser(userData)
         
-        // FORCE HARD RELOAD TO DASHBOARD
+        // Sync username to the stats store for leaderboard
+        useUserStatsStore.getState().setUsername(userData.name)
+        
         window.location.href = '/dashboard'
         resolve()
       }, 500)
@@ -80,6 +98,8 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
 export function useAuth() {
   const context = useContext(AuthContext)
-  if (!context) throw new Error('useAuth must be used within AuthProvider')
+  if (context === undefined) {
+    throw new Error('useAuth must be used within an AuthProvider')
+  }
   return context
 }

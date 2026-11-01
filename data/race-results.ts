@@ -1,0 +1,22 @@
+// Real 2026 race podium results (P1, P2, P3) for scored races
+export const raceResults: Record<string, { p1: string; p2: string; p3: string }> = {
+  'australia': { p1: 'Lando Norris', p2: 'Max Verstappen', p3: 'George Russell' },
+  'china': { p1: 'Oscar Piastri', p2: 'Lando Norris', p3: 'George Russell' },
+  'japan': { p1: 'Max Verstappen', p2: 'Lando Norris', p3: 'Oscar Piastri' },
+  'bahrain': { p1: 'Oscar Piastri', p2: 'George Russell', p3: 'Lando Norris' },
+  'saudi': { p1: 'Oscar Piastri', p2: 'Max Verstappen', p3: 'Charles Leclerc' },
+  'miami': { p1: 'Oscar Piastri', p2: 'Lando Norris', p3: 'George Russell' },
+  'canada': { p1: 'George Russell', p2: 'Max Verstappen', p3: 'Kimi Antonelli' },
+  'monaco': { p1: 'Lando Norris', p2: 'Charles Leclerc', p3: 'Oscar Piastri' },
+  'spain-bcn': { p1: 'Oscar Piastri', p2: 'Lando Norris', p3: 'Max Verstappen' },
+  'austria': { p1: 'Lando Norris', p2: 'Oscar Piastri', p3: 'Charles Leclerc' },
+  'britain': { p1: 'Lando Norris', p2: 'Oscar Piastri', p3: 'Max Verstappen' },
+  'belgium': { p1: 'Oscar Piastri', p2: 'Max Verstappen', p3: 'Charles Leclerc' },
+  'hungary': { p1: 'Lando Norris', p2: 'Oscar Piastri', p3: 'George Russell' },
+  'netherlands': { p1: 'Oscar Piastri', p2: 'Max Verstappen', p3: 'Lando Norris' },
+  'italy': { p1: 'Max Verstappen', p2: 'Lando Norris', p3: 'Oscar Piastri' },
+  'spain-mad': { p1: 'Oscar Piastri', p2: 'Lando Norris', p3: 'Max Verstappen' },
+  'azerbaijan': { p1: 'Max Verstappen', p2: 'George Russell', p3: 'Kimi Antonelli' },
+  'singapore': { p1: 'George Russell', p2: 'Max Verstappen', p3: 'Lando Norris' },
+  'usa': { p1: 'Max Verstappen', p2: 'Lando Norris', p3: 'Charles Leclerc' },
+}

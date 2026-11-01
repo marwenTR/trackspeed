@@ -7,6 +7,7 @@ import { Input } from '@/components/ui/input'
 import { StockCard } from '@/components/market/stock-card'
 import { PortfolioSummary } from '@/components/market/portfolio-summary'
 import { PortfolioDonut } from '@/components/market/portfolio-donut'
+import { MarketTrending } from '@/components/market/market-trending'
 import { useMarketStore } from '@/store/marketStore'
 import { drivers } from '@/data/drivers'
 import { Navigation } from '@/components/layout/navigation'
@@ -26,6 +27,7 @@ export default function MarketPage() {
     driver.team.toLowerCase().includes(searchTerm.toLowerCase())
   )
 
+  // Safe calculation of owned drivers
   const ownedDrivers = Object.keys(portfolio || {})
     .filter(id => portfolio[id] > 0)
     .map(id => {
@@ -44,7 +46,7 @@ export default function MarketPage() {
 
       <div className="container mx-auto px-6 relative z-10 pt-32 pb-20">
         
-        {/* Page Header */}
+        {/* Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-8 gap-4">
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}>
             <h1 className="text-4xl font-black text-white tracking-tight uppercase italic">
@@ -64,15 +66,15 @@ export default function MarketPage() {
           </div>
         </div>
 
-        {/* Portfolio Summary Cards */}
+        {/* Portfolio Summary */}
         {isMounted && <PortfolioSummary />}
 
-        {/* MAIN LAYOUT */}
+        {/* Main Grid */}
         <div className="mt-8 grid gap-8 lg:grid-cols-4">
           
-          {/* LEFT SIDE - 4 Columns Grid for Cards */}
+          {/* LEFT: Market Grid */}
           <div className="lg:col-span-3">
-            <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
+            <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
               {filteredDrivers.map((driver) => (
                 <StockCard 
                   key={driver.id} 
@@ -85,13 +87,16 @@ export default function MarketPage() {
             </div>
           </div>
 
-          {/* RIGHT SIDE - Sidebar */}
+          {/* RIGHT: Sidebar */}
           <div className="space-y-6">
             
-            {/* 1. The Donut Chart */}
+            {/* Donut Chart */}
             {isMounted && <PortfolioDonut />}
+            
+            {/* Trending */}
+            {isMounted && <MarketTrending />}
 
-            {/* 2. Your Holdings */}
+            {/* Holdings */}
             <div className="glass-card bg-[#111620] border border-white/5 p-6 rounded-2xl">
               <h3 className="text-sm font-bold text-white mb-4 flex items-center gap-2 uppercase tracking-wide">
                 <Wallet className="h-4 w-4 text-f1-red" /> Your Holdings
@@ -115,25 +120,6 @@ export default function MarketPage() {
                   ))}
                 </div>
               )}
-            </div>
-
-            {/* 3. Market Stats */}
-            <div className="glass-card bg-[#111620] border border-white/5 p-6 rounded-2xl">
-              <h3 className="text-sm font-bold text-white mb-4 uppercase tracking-wide">Global Market</h3>
-              <div className="space-y-3">
-                <div className="flex justify-between items-center border-b border-white/5 pb-3">
-                  <span className="text-gray-500 text-xs">Volume</span>
-                  <span className="font-mono text-white text-xs font-bold">$1.2M</span>
-                </div>
-                <div className="flex justify-between items-center border-b border-white/5 pb-3">
-                  <span className="text-gray-500 text-xs">Traders</span>
-                  <span className="font-mono text-white text-xs font-bold">8,942</span>
-                </div>
-                <div className="flex justify-between items-center">
-                  <span className="text-gray-500 text-xs">Market Cap</span>
-                  <span className="font-mono text-green-400 text-xs font-bold">$98.2M</span>
-                </div>
-              </div>
             </div>
 
           </div>
